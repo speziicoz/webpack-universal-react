@@ -1,0 +1,72 @@
+{
+  "name": "webpack-universal-react",
+  "version": "1.0.0",
+  "description": "React on the Server for Beginners: Build a Universal React and Node App",
+  "author": "Champ N. Jaikaew",
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": "7.6.0",
+    "npm": "4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/speziicoz/webpack-universal-react.git"
+  },
+  "scripts": {
+    "postinstall": "npm run build",
+    "build": "npm run build-client&&npm run build-server",
+    "build-client": "webpack -p --colors --profile --config ./webpack/config.client.js",
+    "build-server": "webpack -p --colors --profile --config ./webpack/config.server.js",
+    "start": "node build/server.js",
+    "dev": "webpack-dev-server"
+  },
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-runtime": "^6.23.0",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.6",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "history": "^4.6.3",
+    "isomorphic-fetch": "^2.2.1",
+    "json-loader": "^0.5.4",
+    "qs": "^6.2.1",
+    "raw-loader": "^0.5.1",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^5.0.5",
+    "react-router": "^3.0.5",
+    "react-router-redux": "^4.0.5",
+    "react-router-scroll": "^0.3.0",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
+    "serve-static": "^1.11.1",
+    "webpack": "^2.6.1",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-register": "latest",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "fast-sass-loader": "^1.2.5",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "image-webpack-loader": "^3.3.1",
+    "node-sass": "^4.5.3",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack2-ejs-render-loader": "^1.2.0"
+  }
+}
