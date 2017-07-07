@@ -71,7 +71,7 @@ module.exports = {
         stats: "errors-only",
         open: true,
         host: "192.168.100.134",
-        port: "8001",
+        port: "3001",
         historyApiFallback: true
     },
     plugins: [

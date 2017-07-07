@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
-import { browserHistory } from "react-router"
 import { routerMiddleware } from "react-router-redux"
+import { createMemoryHistory } from "history"
 
 import rootReducer from "../reducers"
 import { readyStatePromise, loggerMiddleware } from "./storeMiddleware"
+const history = createMemoryHistory()
 
 const configureStore = (initialState) => {
   const store = createStore(
@@ -28,14 +29,14 @@ const resolveMiddleware = () => {
     return applyMiddleware(
       thunkMiddleware,
       readyStatePromise,
-      routerMiddleware(browserHistory),
+      routerMiddleware(history),
       loggerMiddleware,
     )
   } else {
     return applyMiddleware(
       thunkMiddleware,
       readyStatePromise,
-      routerMiddleware(browserHistory),
+      routerMiddleware(history),
     )
   }
 }
