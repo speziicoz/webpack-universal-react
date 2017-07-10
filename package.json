@@ -19,8 +19,8 @@
     "build-client": "webpack -p --colors --profile --config ./webpack/config.client.js",
     "build-server": "webpack -p --colors --profile --config ./webpack/config.server.js",
     "start": "node build/server.js",
-    "dev": "webpack-dev-server",
-    "server": "node src/server/development.js"
+    "client-side": "webpack-dev-server",
+    "server-side": "SET NODE_ENV=development&&node src/server/development.js"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
