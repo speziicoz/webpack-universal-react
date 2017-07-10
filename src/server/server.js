@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000
 const NODE_ENV = process.env.NODE_ENV || "development"
 const isDev = NODE_ENV === "development"
 
-if (isDev) {
+if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
   const webpackConfig = require("../../webpack/config.common")
   const webpackDevMiddleware = require("webpack-dev-middleware")
@@ -58,7 +58,7 @@ app.use(function (req, res) {
           </Provider>
         )
 
-        if (isDev) {
+        if (process.env.NODE_ENV === "development") {
           res.render("index", { markup })
         } else {
           res.send(
@@ -80,6 +80,6 @@ app.listen(PORT, (error) => {
   if (error) {
     console.error(error)
   } else {
-    console.log(`Listening on port ${PORT} [${NODE_ENV}]`)
+    console.log(`Listening on port ${PORT} [${NODE_ENV}] [${process.env.NODE_ENV}]`)
   }
 })
