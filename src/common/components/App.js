@@ -9,19 +9,19 @@ class App extends Component {
         const { add, subtract, apiList } = this.props
 
         return (
-            <div>
+            <div className="test2">
+                <div>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                    </ul>
+                </div>
                 <Header name="Champ N. Jaikaew" />
                 <span>Client Results: {apiList}</span>
                 <div>
                     <button onClick={add}>Add</button>
                     {" "}
                     <button onClick={subtract}>Subtract</button>
-                </div>
-                <div>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                    </ul>
                 </div>
                 {this.props.children}
             </div>

@@ -25,7 +25,7 @@ module.exports = {
                 test: /\.ejs$/,
                 use: [
                     {
-                        loader: "webpack2-ejs-render-loader",
+                        loader: "ejs-html-loader",
                         options: {
                             markup: null,
                             bundleJS: null
@@ -37,10 +37,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
-                use: cssConfig
-            },
-            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
@@ -49,6 +45,10 @@ module.exports = {
                         presets: ["env", "react", "es2015"]
                     }
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: cssConfig
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -80,6 +80,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../src/views/index.ejs"),
+            inject: false,
             minify: {
                 collapseWhitespace: true
             }

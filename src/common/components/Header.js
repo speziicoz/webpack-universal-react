@@ -6,8 +6,9 @@ class Header extends Component {
 
         return (
             <div>
-                <h1>React Component.</h1>
-                <p>By {name}</p>
+                <h1>Webpack Universal React.</h1>
+                <p>React on the Server for Beginners: Build a Universal React and Node App</p>
+                <p className="author">By {name}</p>
             </div>
         )
     }

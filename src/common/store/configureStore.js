@@ -1,11 +1,13 @@
 import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
 import { routerMiddleware } from "react-router-redux"
-import { createMemoryHistory } from "history"
+import { createHistory, createMemoryHistory } from "history"
 
 import rootReducer from "../reducers"
 import { readyStatePromise, loggerMiddleware } from "./storeMiddleware"
-const history = createMemoryHistory()
+
+const isBrowser = process.env.BROWSER === JSON.stringify(true)
+const history = isBrowser ? createHistory() : createMemoryHistory()
 
 const configureStore = (initialState) => {
   const store = createStore(
