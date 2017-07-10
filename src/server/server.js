@@ -12,10 +12,9 @@ import routes from "../common/routes"
 import configureStore from "../common/store/configureStore"
 
 const app = new Express()
-const PORT = process.env.PORT || 3000
-const isDev = process.env.NODE_ENV === "development"
+const port = process.env.PORT || 3000
 
-if (isDev) {
+if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
   const webpackConfig = require("../../webpack/config.common")
   const webpackDevMiddleware = require("webpack-dev-middleware")
@@ -57,7 +56,7 @@ app.use(function (req, res) {
           </Provider>
         )
 
-        if (isDev) {
+        if (process.env.NODE_ENV === "development") {
           res.render("index", { markup })
         } else {
           res.send(
@@ -75,10 +74,10 @@ app.use(function (req, res) {
   })
 })
 
-app.listen(PORT, (error) => {
+app.listen(port, (error) => {
   if (error) {
     console.error(error)
   } else {
-    console.log(`Listening on port ${PORT} [${process.env.NODE_ENV}]`)
+    console.log(`Listening on port ${port} [${process.env.NODE_ENV}]`)
   }
 })
