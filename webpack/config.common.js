@@ -73,6 +73,7 @@ module.exports = {
         hot: true,
         stats: "errors-only",
         open: true,
+        openPage: "",
         host: "192.168.100.134",
         port: "3001",
         historyApiFallback: true
