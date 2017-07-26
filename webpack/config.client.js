@@ -16,6 +16,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.ejs$/,
+                use: "raw-loader"
+            },
+            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
@@ -24,10 +28,6 @@ module.exports = {
                         presets: ["env", "react", "es2015"]
                     }
                 }
-            },
-            {
-                test: /\.ejs$/,
-                use: "raw-loader"
             },
             {
                 test: /\.scss$/,

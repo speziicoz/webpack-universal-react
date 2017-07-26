@@ -1,5 +1,6 @@
-import path from "path"
 import Express from "express"
+import path from "path"
+import favicon from "serve-favicon"
 
 import React from "react"
 import { renderToString, renderToStaticMarkup } from "react-dom/server"
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === "development") {
   app.set("views", path.resolve("src/views"))
 } else {
   app.use(Express.static("public/static"))
+  app.use(favicon(path.resolve("src/assets/favicon.ico")))
 
   app.set("views", path.resolve("public/static"))
 }
