@@ -1,7 +1,5 @@
 import path from "path"
 import Express from "express"
-import ejs from "ejs"
-import { minify } from "html-minifier"
 
 import React from "react"
 import { renderToString, renderToStaticMarkup } from "react-dom/server"
@@ -14,6 +12,8 @@ import configureStore from "../common/store/configureStore"
 const app = new Express()
 const port = process.env.PORT || 3000
 
+app.set("view engine", "ejs")
+
 if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
   const webpackConfig = require("../../webpack/config.common")
@@ -22,9 +22,6 @@ if (process.env.NODE_ENV === "development") {
 
   const compiler = webpack(webpackConfig)
 
-  app.set("view engine", "ejs")
-  app.set("views", path.join(__dirname, "../views"))
-
   app.use(webpackDevMiddleware(compiler, {
     stats: "minimal",
     noInfo: true,
@@ -32,8 +29,12 @@ if (process.env.NODE_ENV === "development") {
   }))
 
   app.use(webpackHotMiddleware(compiler))
+
+  app.set("views", path.resolve("src/views"))
 } else {
   app.use(Express.static("public/static"))
+
+  app.set("views", path.resolve("public/static"))
 }
 
 app.use(function (req, res) {
@@ -56,15 +57,7 @@ app.use(function (req, res) {
           </Provider>
         )
 
-        if (process.env.NODE_ENV === "development") {
-          res.render("index", { markup })
-        } else {
-          res.send(
-            minify(ejs.render(require("../views/index.ejs"), { markup }), {
-              collapseWhitespace: true
-            })
-          )
-        }
+        res.render("index", { markup })
       }).catch(error => {
         res.status(500).send(error.message)
       })

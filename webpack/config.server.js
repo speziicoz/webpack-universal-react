@@ -1,18 +1,17 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const nodeExternals = require("webpack-node-externals")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const webpack = require("webpack")
 const path = require("path")
-const nodeExternals = require("webpack-node-externals")
 
 module.exports = {
     target: "node",
     context: __dirname,
     entry: {
-        server: path.resolve(__dirname, "../src/server/server.js")
+        server: path.resolve("src/server/server.js")
     },
     output: {
         filename: "server.js",
-        path: path.join(__dirname, "../build")
+        path: path.resolve("build")
     },
     module: {
         rules: [
@@ -27,10 +26,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.ejs$/,
-                use: "raw-loader"
-            },
-            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -39,7 +34,6 @@ module.exports = {
             }
         ]
     },
-    externals: [nodeExternals()],
     plugins: [
         new ExtractTextPlugin({
             filename: "bundle.css",
@@ -49,5 +43,6 @@ module.exports = {
             "process.env.BROWSER": JSON.stringify(false),
             "process.env.NODE_ENV": JSON.stringify("production")
         })
-    ]
+    ],
+    externals: [nodeExternals()]
 }

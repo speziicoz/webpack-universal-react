@@ -16,11 +16,11 @@
   "scripts": {
     "postinstall": "npm run build",
     "build": "npm run build-client && npm run build-server",
-    "build-client": "webpack -p --colors --profile --config ./webpack/config.client.js",
-    "build-server": "webpack -p --colors --profile --config ./webpack/config.server.js",
+    "build-client": "rimraf ./public/* && webpack -p --colors --profile --config ./webpack/config.client.js",
+    "build-server": "rimraf ./build/* && webpack -p --colors --profile --config ./webpack/config.server.js",
     "start": "node build/server.js",
-    "client-side": "webpack-dev-server",
-    "server-side": "SET NODE_ENV=development&&node src/server/development.js"
+    "dev": "webpack-dev-server",
+    "serv": "SET NODE_ENV=development&&node src/server/development.js"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
@@ -52,6 +52,7 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
+    "rimraf": "^2.6.1",
     "rodal": "^1.5.4",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",

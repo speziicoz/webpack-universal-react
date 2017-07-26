@@ -7,11 +7,11 @@ module.exports = {
     devtool: "source-map",
     context: __dirname,
     entry: {
-        client: path.resolve(__dirname, "../src/client/index.js")
+        client: path.resolve("src/client/index.js")
     },
     output: {
         filename: "bundle.js",
-        path: path.join(__dirname, "../public/static")
+        path: path.resolve("public/static")
     },
     module: {
         rules: [
@@ -26,6 +26,10 @@ module.exports = {
                 }
             },
             {
+                test: /\.ejs$/,
+                use: "raw-loader"
+            },
+            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -35,6 +39,13 @@ module.exports = {
         ]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve("src/views/index.ejs"),
+            filename: "index.ejs",
+            minify: {
+                collapseWhitespace: true
+            }
+        }),
         new ExtractTextPlugin({
             filename: "bundle.css",
             allChunks: true

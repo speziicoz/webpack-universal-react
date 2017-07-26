@@ -3,21 +3,13 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const webpack = require("webpack")
 const path = require("path")
 
-const isProd = process.env.NODE_ENV === "production"
-const cssDev = ["style-loader", "css-loader?sourceMap", "fast-sass-loader"]
-const cssProd = ExtractTextPlugin.extract({
-    fallback: "style-loader",
-    use: ["css-loader", "fast-sass-loader"]
-})
-const cssConfig = isProd ? cssProd : cssDev
-
 module.exports = {
     entry: {
-        common: path.resolve(__dirname, "../src/client/index.js")
+        common: path.resolve("src/client/index.js")
     },
     output: {
         filename: "bundle.js",
-        path: path.join(__dirname, "../dist")
+        path: path.resolve("dist")
     },
     module: {
         rules: [
@@ -27,8 +19,7 @@ module.exports = {
                     {
                         loader: "ejs-html-loader",
                         options: {
-                            markup: null,
-                            bundleJS: null
+                            markup: null
                         }
                     },
                     {
@@ -48,7 +39,10 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: cssConfig
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader", "fast-sass-loader"]
+                })
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -68,7 +62,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, "../dist"),
+        contentBase: path.resolve("dist"),
         compress: true,
         hot: true,
         stats: "errors-only",
@@ -80,15 +74,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "../src/views/index.ejs"),
-            inject: false,
+            template: path.resolve("src/views/index.ejs"),
             minify: {
-                collapseWhitespace: true
+                collapseWhitespace: false
             }
         }),
         new ExtractTextPlugin({
             filename: "bundle.css",
-            disable: !isProd,
             allChunks: true
         }),
         new webpack.DefinePlugin({
