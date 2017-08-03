@@ -5,10 +5,11 @@ const path = require("path")
 
 module.exports = {
     entry: {
-        devServer: path.resolve("src/client/index.js")
+        devServer: path.resolve("src/client/index.js"),
+        vendor: ["react", "react-dom", "react-router"]
     },
     output: {
-        filename: "bundle.js",
+        filename: "bundle.[hash].js",
         path: path.resolve("dist")
     },
     module: {
@@ -80,12 +81,16 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin({
-            filename: "bundle.css",
+            filename: "bundle.[hash].css",
             allChunks: true
         }),
         new webpack.DefinePlugin({
             "process.env.BROWSER": JSON.stringify(true),
             "process.env.NODE_ENV": JSON.stringify("development")
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            filename: "vendor.[hash].js"
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

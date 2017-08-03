@@ -19,7 +19,7 @@ app.set("views", path.resolve(publicPath))
 
 if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
-  const webpackConfig = require("../../webpack/config.client")
+  const webpackConfig = require("../../webpack/config.brower")
   const webpackDevMiddleware = require("webpack-dev-middleware")
   const webpackHotMiddleware = require("webpack-hot-middleware")
 
