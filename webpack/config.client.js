@@ -52,7 +52,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             "process.env.BROWSER": JSON.stringify(true),
-            "process.env.NODE_ENV": JSON.stringify("production")
-        })
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "production")
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 }

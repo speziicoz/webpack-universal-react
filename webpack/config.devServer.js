@@ -5,7 +5,7 @@ const path = require("path")
 
 module.exports = {
     entry: {
-        common: path.resolve("src/client/index.js")
+        devServer: path.resolve("src/client/index.js")
     },
     output: {
         filename: "bundle.js",

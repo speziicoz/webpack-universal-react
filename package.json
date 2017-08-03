@@ -19,8 +19,8 @@
     "build-client": "rimraf ./public/* && webpack -p --colors --profile --config ./webpack/config.client.js",
     "build-server": "rimraf ./build/* && webpack -p --colors --profile --config ./webpack/config.server.js",
     "start": "node build/server.js",
-    "dev": "webpack-dev-server",
-    "serv": "SET NODE_ENV=development&&node src/server/development.js"
+    "start-dev": "node src/server/development.js",
+    "dev": "webpack-dev-server"
   },
   "dependencies": {
     "babel-core": "^6.25.0",

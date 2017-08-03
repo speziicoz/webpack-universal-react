@@ -12,12 +12,14 @@ import configureStore from "../common/store/configureStore"
 
 const app = new Express()
 const port = process.env.PORT || 3000
+const publicPath = "public/static"
 
 app.set("view engine", "ejs")
+app.set("views", path.resolve(publicPath))
 
 if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
-  const webpackConfig = require("../../webpack/config.common")
+  const webpackConfig = require("../../webpack/config.client")
   const webpackDevMiddleware = require("webpack-dev-middleware")
   const webpackHotMiddleware = require("webpack-hot-middleware")
 
@@ -30,13 +32,9 @@ if (process.env.NODE_ENV === "development") {
   }))
 
   app.use(webpackHotMiddleware(compiler))
-
-  app.set("views", path.resolve("src/views"))
 } else {
-  app.use(Express.static("public/static"))
+  app.use(Express.static(publicPath))
   app.use(favicon(path.resolve("src/assets/favicon.ico")))
-
-  app.set("views", path.resolve("public/static"))
 }
 
 app.use(function (req, res) {

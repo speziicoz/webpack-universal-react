@@ -4,8 +4,11 @@ import PropTypes from "prop-types"
 import CSSModules from "react-css-modules"
 
 import Header from "./Header"
-import "../../assets/css/reset.scss"
-import "../../assets/css/app.scss"
+
+if (process.env.BROWSER) {
+    require("../../assets/css/reset.scss")
+    require("../../assets/css/app.scss")
+}
 
 class App extends Component {
     render() {

@@ -1,1 +1,1 @@
-module.exports = require("./webpack/config.common")
+module.exports = require("./webpack/config.devServer")
