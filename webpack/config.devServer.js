@@ -9,7 +9,7 @@ module.exports = {
         vendor: ["react", "react-dom", "react-router"]
     },
     output: {
-        filename: "bundle.[hash].js",
+        filename: "bundle.js",
         path: path.resolve("dist")
     },
     module: {
@@ -48,17 +48,17 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [
-                    "file-loader?name=images/[name].[ext]",
+                    "file-loader?name=public/images/[name].[ext]",
                     "image-webpack-loader?bypassOnDebug"
                 ]
             },
             {
                 test: /\.(woff2?)$/,
-                use: "url-loader?limit=10000&name=fonts/[name].[ext]"
+                use: "url-loader?limit=10000&name=public/fonts/[name].[ext]"
             },
             {
                 test: /\.(ttf|eot)$/,
-                use: "file-loader?name=fonts/[name].[ext]"
+                use: "file-loader?name=public/fonts/[name].[ext]"
             }
         ]
     },
@@ -81,7 +81,7 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin({
-            filename: "bundle.[hash].css",
+            filename: "bundle.css",
             allChunks: true
         }),
         new webpack.DefinePlugin({
@@ -90,7 +90,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
-            filename: "vendor.[hash].js"
+            filename: "vendor.js"
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

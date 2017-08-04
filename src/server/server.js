@@ -14,12 +14,14 @@ const app = new Express()
 const port = process.env.PORT || 3000
 const publicPath = "public/static"
 
+app.use(favicon(path.resolve("src/assets/favicon.ico")))
+
 app.set("view engine", "ejs")
 app.set("views", path.resolve(publicPath))
 
 if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
-  const webpackConfig = require("../../webpack/config.brower")
+  const webpackConfig = require("../../webpack/config.client")
   const webpackDevMiddleware = require("webpack-dev-middleware")
   const webpackHotMiddleware = require("webpack-hot-middleware")
 
@@ -34,7 +36,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(webpackHotMiddleware(compiler))
 } else {
   app.use(Express.static(publicPath))
-  app.use(favicon(path.resolve("src/assets/favicon.ico")))
 }
 
 app.use(function (req, res) {
