@@ -13,7 +13,7 @@ $ npm start
 This will install the dependecies and listening on port 3000.
 ```
 
-Launch your favorite web browser and go to http://localhost:3000 for Relay application
+Launch your favorite web browser and go to http://localhost:3000
 
 ## Deployment
 
