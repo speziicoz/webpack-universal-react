@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Link, Route } from "react-router"
 import PropTypes from "prop-types"
-import CSSModules from "react-css-modules"
 
 import Header from "./Header"
 
