@@ -27,3 +27,5 @@ $ heroku ps:scale web=1             # Run the deployed application
 ````
 
 That is it! Now, open the application on your default browser using `heroku open`.
+
+> Check out the [Live demo](https://webpack-universal-react.herokuapp.com) on Heroku.
