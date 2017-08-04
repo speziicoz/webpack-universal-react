@@ -7,7 +7,7 @@ import { renderToString, renderToStaticMarkup } from "react-dom/server"
 import { Provider } from "react-redux"
 import { match, RouterContext } from "react-router"
 
-import { NODE_ENV, PORT } from "../common/constants"
+import constants from "../common/constants"
 import routes from "../common/routes"
 import configureStore from "../common/store/configureStore"
 
@@ -19,7 +19,7 @@ app.use(favicon(path.resolve("src/assets/favicon.ico")))
 app.set("view engine", "ejs")
 app.set("views", path.resolve(publicPath))
 
-if (NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   const webpack = require("webpack")
   const webpackConfig = require("../../webpack/config.client")
   const webpackDevMiddleware = require("webpack-dev-middleware")
@@ -68,10 +68,10 @@ app.use(function (req, res) {
   })
 })
 
-app.listen(PORT, (error) => {
+app.listen(process.env.PORT, (error) => {
   if (error) {
     console.error(error)
   } else {
-    console.log(`Listening on port ${PORT} [${NODE_ENV}]`)
+    console.log(`Listening on port ${process.env.PORT} [${process.env.NODE_ENV}]`)
   }
 })
