@@ -7,7 +7,7 @@ import { renderToString, renderToStaticMarkup } from "react-dom/server"
 import { Provider } from "react-redux"
 import { match, RouterContext } from "react-router"
 
-import constants from "../common/constants"
+import defined from "../common/defined"
 import routes from "../common/routes"
 import configureStore from "../common/store/configureStore"
 

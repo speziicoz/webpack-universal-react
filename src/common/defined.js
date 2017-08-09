@@ -5,3 +5,7 @@ if (!process.env.NODE_ENV) {
 if (!process.env.PORT) {
     process.env.PORT = 3000
 }
+
+if (!process.env.DATABASE_URL) {
+    process.env.DATABASE_URL = ""
+}
